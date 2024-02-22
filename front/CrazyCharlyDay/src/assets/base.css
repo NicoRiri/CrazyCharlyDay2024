@@ -1,8 +1,19 @@
 /* color palette from <https://github.com/vuejs/theme> */
 :root {
+  /*light theme*/
   --vt-c-white: #ffffff;
-  --vt-c-white-soft: #f8f8f8;
-  --vt-c-white-mute: #f2f2f2;
+  --vt-c-beige: #e0d9d1;
+  --vt-c-light-green: #6f6e48;
+  --vt-c-dark-green: #363a1a;
+
+  /*dark theme*/
+  --vt-c-dark-purple: #250d33;
+  --vt-c-purple: #5b2a63;
+  --vt-c-light-purple: #bf6891;
+  --vt-c-light-orange: #f5b897;
+  --vt-c-orange: #f39777;
+
+  /*--vt-c-white-mute: #f2f2f2;
 
   --vt-c-black: #181818;
   --vt-c-black-soft: #222222;
@@ -19,36 +30,41 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+   */
 }
 
 /* semantic color variables for this project */
 :root {
-  --color-background: var(--vt-c-white);
-  --color-background-soft: var(--vt-c-white-soft);
-  --color-background-mute: var(--vt-c-white-mute);
+  --color-background: var(--vt-c-beige);
+  --color-background-soft: var(--vt-c-white);
+ /* --color-background-mute: var(--vt-c-white-mute);*/
 
-  --color-border: var(--vt-c-divider-light-2);
-  --color-border-hover: var(--vt-c-divider-light-1);
+  --color-border: var(--vt-c-dark-green);
+  --color-border-hover: var(--vt-c-dark-green);
 
-  --color-heading: var(--vt-c-text-light-1);
-  --color-text: var(--vt-c-text-light-1);
+  --color-box : var(--vt-c-beige);
+  --color-box-light: var(--vt-c-white);
+
+  --color-heading: var(--vt-c-light-green);
+  --color-text: var(--vt-c-dark-green);
 
   --section-gap: 160px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-background: var(--vt-c-black);
-    --color-background-soft: var(--vt-c-black-soft);
-    --color-background-mute: var(--vt-c-black-mute);
+    --color-background: var(--vt-c-dark-purple);
+    --color-background-soft: var(--vt-c-light-orange);
 
-    --color-border: var(--vt-c-divider-dark-2);
-    --color-border-hover: var(--vt-c-divider-dark-1);
+    --color-border: var(--vt-c-light-purple);
+    --color-border-hover: var(--vt-c-orange);
 
-    --color-heading: var(--vt-c-text-dark-1);
-    --color-text: var(--vt-c-text-dark-2);
+    --color-heading: var(--vt-c-light-orange);
+    --color-text: var(--vt-c-white);
   }
 }
+
 
 *,
 *::before,
