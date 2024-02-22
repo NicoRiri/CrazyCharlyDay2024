@@ -10,7 +10,7 @@ public class AlgoRecuitSimule {
     //TODO
   }
 
-  public void algo(List<Candidat> candidats, List<Atelier> ateliers){
+  public State algo(List<Candidat> candidats, List<Atelier> ateliers){
     State etat = State.getRandomState(candidats, ateliers);
     State etatOptimal = etat;
     int meilleureEnergie = etatOptimal.getScore();
@@ -24,6 +24,12 @@ public class AlgoRecuitSimule {
         etatOptimal = tempEtat;
         meilleureEnergie = tempEnergie;
       }
+      if(tempEnergie < meilleureEnergie){
+        etatOptimal = tempEtat;
+        meilleureEnergie = tempEnergie;
+      }
+      nbEtapes++;
     }
+    return etatOptimal;
   }
 }
