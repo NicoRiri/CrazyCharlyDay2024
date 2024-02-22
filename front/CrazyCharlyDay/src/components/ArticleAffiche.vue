@@ -15,7 +15,19 @@ export default{
   methods: {
   reroute(id) {
     this.$router.push({ path: '/atelier/'+id })
-  }
+  },
+    ajout(){
+      let pack= {id:this.donnee.id,titre:this.donnee.titre,date:this.date};
+      let panier=sessionStorage.getItem('panier');
+      if(panier==null){
+        panier=[];
+      }else{
+        panier=JSON.parse(panier);
+      }
+      panier.push(pack);
+      sessionStorage.setItem('panier',JSON.stringify(panier));
+      this.$root.actualiser();
+    }
 },
   mounted() {
     let debut=this.donnee.debut.split("T")[0].split(" ")[0];
@@ -39,8 +51,9 @@ export default{
       <p>{{duree}}</p>
       <p>{{date}}</p>
     <button @click="reroute(donnee.id)">Voir plus</button>
+      <button @click="ajout()">Participer</button>
     </div>
-  <img alt="Cuisine" src="@/assets/placeholder.png" width="500px" height="250px" />
+  <img alt="Cuisine" :src="donnee.image" width="500px" height="250px" />
   </div>
 </template>
 

@@ -48,8 +48,8 @@ export default {
       <article-affiche :donnee="item"/>
     </div>
     <div class="pageTurn">
-    <p v-if="idprev>0" class="next" @click="reroute(idprev)">Page précédente</p>
-    <p v-if="idnext<=max" class="before" @click="reroute(idnext)">Page suivante</p>
+    <button v-if="idprev>0" class="next" @click="reroute(idprev)">Page précédente</button>
+    <button v-if="idnext<=max" class="before" @click="reroute(idnext)">Page suivante</button>
     </div>
   </main>
 </template>
