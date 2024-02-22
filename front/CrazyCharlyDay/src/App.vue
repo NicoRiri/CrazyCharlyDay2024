@@ -18,6 +18,11 @@ export default {
       donnee: [{ id: 1, titre: "Cuisine Français", date: "2022-03-18" }, { id: 2, titre: "Cuisine Anglaise", date: "2023-03-17" }],
     }
   },
+  computed: {
+    adminRoute(){
+      return this.$route.name === "Admin";
+    }
+  },
   methods: {
     actualiser(){
       let panier=sessionStorage.getItem('panier');
@@ -69,36 +74,41 @@ export default {
 </script>
 
 <template>
-  <div id="mySidebar" class="sidebar">
-    <div class="buttonGroup">
-      <h2>Nom</h2>
-      <input v-model="nom" placeholder="Entrer votre nom" required minlength="2" @input="actualiser"/>
-      <h2>Prénom</h2>
-      <input v-model="prenom" placeholder="Entrer votre prenom" required minlength="2" @input="actualiser"/>
-      <h2>Email</h2>
-      <input v-model="email" type="email" placeholder="Entrer votre email" required  @input="actualiser"/>
-    </div>
-    <h2>Ateliers</h2>
-    <div class="panier">
-      <draggable v-model="donnee" :options="{ group: 'items' }" item-key="id" @end="onDragEnd">
-        <template #item="{ element: item, index }">
-          <div :key="item.id">
-            <SubAffiche :nom="item" :index="index" />
-          </div>
-        </template>
-      </draggable>
-    </div>
-    <button @click="valider()" class="valider"><h2>Valider</h2></button>
-  </div>
-  <section class="page">
-    <nav>
-      <RouterLink to="/" class="home button">Home</RouterLink>
-      <img alt="Vue logo" class="logo button" src="@/assets/logo.webp" width="125" height="125" />
-      <RouterLink to="/articles/1" class="article">Article</RouterLink>
-    </nav>
-
+  <div v-if="adminRoute">
     <RouterView :key="$route.path" />
-  </section>
+  </div>
+  <div v-else>
+    <div id="mySidebar" class="sidebar">
+      <div class="buttonGroup">
+        <h2>Nom</h2>
+        <input v-model="nom" placeholder="Entrer votre nom" required minlength="2" @input="actualiser"/>
+        <h2>Prénom</h2>
+        <input v-model="prenom" placeholder="Entrer votre prenom" required minlength="2" @input="actualiser"/>
+        <h2>Email</h2>
+        <input v-model="email" type="email" placeholder="Entrer votre email" required  @input="actualiser"/>
+      </div>
+      <h2>Ateliers</h2>
+      <div class="panier">
+        <draggable v-model="donnee" :options="{ group: 'items' }" item-key="id" @end="onDragEnd">
+          <template #item="{ element: item, index }">
+            <div :key="item.id">
+              <SubAffiche :nom="item" :index="index" />
+            </div>
+          </template>
+        </draggable>
+      </div>
+      <button @click="valider()" class="valider"><h2>Valider</h2></button>
+    </div>
+    <section class="page">
+      <nav>
+        <RouterLink to="/" class="home button">Home</RouterLink>
+        <img alt="Vue logo" class="logo button" src="@/assets/logo.webp" width="125" height="125" />
+        <RouterLink to="/articles/1" class="article">Article</RouterLink>
+      </nav>
+
+      <RouterView :key="$route.path" />
+    </section>
+  </div>
 </template>
 
 <style scoped>

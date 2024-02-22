@@ -25,6 +25,7 @@ DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE `utilisateur` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) DEFAULT NULL,
+  `prenom` varchar(255) DEFAULT NULL,
   `admin` tinyint(1) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -43,4 +44,4 @@ CREATE TABLE `voeux` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2024-02-22 12:59:01
+-- 2024-02-22 16:48:11
