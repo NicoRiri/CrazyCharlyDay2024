@@ -88,7 +88,7 @@ export default {
         </template>
       </draggable>
     </div>
-    <button @click="valider()" class="valider"><h2>Valider</h2></button>
+    <button @click="valider()" class="valider">Valider</button>
   </div>
   <section class="page">
     <nav>

@@ -56,7 +56,36 @@ export default {
 
 <style>
 .boite {
-  background-color: blue;
+  position: relative;
+  background-color: var(--color-background-soft);
+  width:80%;
+  margin: auto;
+  height: 200px;
+  border-bottom: var(--color-background) 3.5px dashed;
+}
+.boite::before{
+  content: '';
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: var(--color-background);
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, 55%);
+  z-index: 2;
+}
+.boite::after{
+  content: '';
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: var(--color-background);
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 55%);
+  z-index: 2;
 }
 
 main {
@@ -66,13 +95,22 @@ main {
 .pageTurn {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
 .next {
-  background-color: pink;
+  background-color: var(--vt-c-purple);
+  margin:auto;
 }
 
 .before {
-  background-color: purple;
+  background-color: var(--vt-c-purple);
+  margin: auto;
+}
+button{
+  transition: 0.5s ease all;
+}
+button:hover{
+  background-color:var(--vt-c-light-purple);
 }
 </style>
