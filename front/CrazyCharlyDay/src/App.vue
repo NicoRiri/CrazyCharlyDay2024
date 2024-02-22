@@ -138,6 +138,9 @@ export default {
 </template>
 
 <style scoped>
+h1{
+  color: var(--vt-c-purple);
+}
 nav {
 
   display: flex;
@@ -297,4 +300,6 @@ input{
   border: 1px solid var(--vt-c-dark-green);
   padding-left: 10px;
 }
+
+
 </style>

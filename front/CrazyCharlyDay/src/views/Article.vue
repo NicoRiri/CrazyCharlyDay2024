@@ -127,5 +127,8 @@ main {
 button:hover{
   background-color:var(--vt-c-light-purple);
 }
+h1{
+  color: var(--vt-c-purple);
+}
 
 </style>

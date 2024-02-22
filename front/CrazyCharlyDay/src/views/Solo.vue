@@ -135,4 +135,14 @@ export default {
   color: var(--color-background-soft);
   flex-wrap: wrap;
 }
+button{
+  background-color: var(--vt-c-dark-green);
+  padding: 8px 10px 8px 10px;
+  margin-top: 5px;
+  border: none;
+  color: var(--vt-c-white);
+  font-family: var(--h2-font);
+  font-size: 20px;
+  letter-spacing: 2px;
+}
 </style>

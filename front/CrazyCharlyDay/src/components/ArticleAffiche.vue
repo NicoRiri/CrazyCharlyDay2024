@@ -140,4 +140,7 @@ h2{
   font-family: var(--h2-font);
   color: var(--vt-c-dark-green);
 }
+h1{
+  color: var(--vt-c-purple);
+}
 </style>
