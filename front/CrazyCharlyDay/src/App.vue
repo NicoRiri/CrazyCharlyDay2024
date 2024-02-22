@@ -1,19 +1,21 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 import SubAffiche from "@/components/subAffiche.vue";
+import draggable from 'vuedraggable';
 
 export default {
   components: {
     SubAffiche,
     RouterLink,
-    RouterView
+    RouterView,
+    draggable
   },
   data(){
     return {
-      nom: '',
-      prenom: '',
-      email: '',
-      donnee: [{ id: 1, nom: "Cuisine Français", date: "2022-03-18" }, { id: 2, nom: "Cuisine Anglaise", date: "2023-03-17" }],
+      nom: "",
+      prenom: "",
+      email: "",
+      donnee: [{ id: 1, titre: "Cuisine Français", date: "2022-03-18" }, { id: 2, titre: "Cuisine Anglaise", date: "2023-03-17" }],
     }
   },
   methods: {
@@ -25,35 +27,66 @@ export default {
         panier=JSON.parse(panier);
       }
       this.donnee=panier;
+      sessionStorage.setItem('nom',this.nom);
+      sessionStorage.setItem('prenom',this.prenom);
+      sessionStorage.setItem('email',this.email);
     },
     valider(){
-      let panier=sessionStorage.getItem('panier');
-      console.log(panier);
+      if(this.nom.length>2&&this.prenom.length>2&&this.email.length>2){
+        if(this.email.includes("@")&&this.email.includes(".")){
+          if(this.donnee.length>0){
+            console.log(this.donnee);
+          }else{
+            alert("Veuillez selectionner au moins un atelier");
+          }
+        }else{
+          alert("Veuillez entrer une adresse mail valide");
+        }
+      }else{
+        alert("Veuillez remplir tous les champs");
+      }
+    },
+    onDragEnd() {
+      sessionStorage.setItem('panier',JSON.stringify(this.donnee));
     }
   },
   mounted() {
+    this.nom=sessionStorage.getItem('nom');
+    this.prenom=sessionStorage.getItem('prenom');
+    this.email=sessionStorage.getItem('email');
+    if(this.nom==null){
+      this.nom="";
+    }
+    if(this.prenom==null){
+      this.prenom="";
+    }
+    if(this.email==null){
+      this.email="";
+    }
     this.actualiser();
   }
 }
 </script>
 
 <template>
-
-  <!--<div id="mySidebar" class="sidebar" @mouseenter="openNav" @mouseleave="closeNav">-->
   <div id="mySidebar" class="sidebar">
     <div class="buttonGroup">
       <h2>Nom</h2>
-    <input v-model="nom" placeholder="Entrer votre nom" required>
+      <input v-model="nom" placeholder="Entrer votre nom" required minlength="2" @input="actualiser"/>
       <h2>Prénom</h2>
-    <input v-model="prenom" placeholder="Entrer votre prenom" required>
+      <input v-model="prenom" placeholder="Entrer votre prenom" required minlength="2" @input="actualiser"/>
       <h2>Email</h2>
-    <input v-model="email" type="email" placeholder="Entrer votre email" required>
+      <input v-model="email" type="email" placeholder="Entrer votre email" required  @input="actualiser"/>
     </div>
     <h2>Ateliers</h2>
     <div class="panier">
-      <div v-for="(item, index) in donnee" class="boite">
-        <SubAffiche :nom="item" :index="index" />
-      </div>
+      <draggable v-model="donnee" :options="{ group: 'items' }" item-key="id" @end="onDragEnd">
+        <template #item="{ element: item, index }">
+          <div :key="item.id">
+            <SubAffiche :nom="item" :index="index" />
+          </div>
+        </template>
+      </draggable>
     </div>
     <button @click="valider()" class="valider"><h2>Valider</h2></button>
   </div>
@@ -64,9 +97,8 @@ export default {
       <RouterLink to="/articles/1" class="article">Article</RouterLink>
     </nav>
 
-    <RouterView :key="$route.path"/>
+    <RouterView :key="$route.path" />
   </section>
-
 </template>
 
 <style scoped>
