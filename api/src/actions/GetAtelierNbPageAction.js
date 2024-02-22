@@ -1,8 +1,8 @@
 import SsAtelier from "../service/SsAtelier.js";
 
-export async function GetAtelierAction(req,res,next){
+export async function GetAtelierNbPageAction(req,res,next){
     try {
-        const atelier = await SsAtelier.getAtelier()
+        const atelier = await SsAtelier.getAtelierNbPage(req,res,next)
         console.log(atelier)
         res.json({data:atelier})
     }catch(e){

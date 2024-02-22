@@ -26,6 +26,21 @@ public class State {
   }
 
   public static State getNeighbourState(State state){
-    return new State();
+    State res = new State();
+    res.ateliers = new ArrayList<>(state.ateliers);
+    res.candidats = new ArrayList<>(state.candidats);
+    int i = (int) (Math.random() * res.candidats.size());
+    int j = (int) (Math.random() * res.ateliers.size());
+    if (res.ateliers.get(j).getNbPlacesRestantes() > 0) {
+      res.ateliers.get(j).addCandidat(res.candidats.get(i));
+    }
+    return res;
+  }
+
+  @Override
+  public String toString() {
+    return "State{" +
+      "candidats=" + candidats +
+      '}';
   }
 }

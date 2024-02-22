@@ -26,4 +26,9 @@ public class Atelier {
   public int getNbPlacesRestantes() {
     return nbPlacesRestantes;
   }
+
+  @Override
+  public String toString() {
+    return  nom;
+  }
 }
