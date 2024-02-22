@@ -48,11 +48,11 @@ export default {
   </header>
   <main>
 
-      <div>
+      <div class="flexible">
         <v-text-field placeholder="titre" v-model="titre"/>
         <v-text-field placeholder="theme" v-model="theme"/>
       </div>
-      <div>
+      <div class="flexible">
         <v-text-field placeholder="placeDispo" v-model="placeDispo"/>
         <v-text-field placeholder="image" v-model="image"/>
       </div>
@@ -61,11 +61,13 @@ export default {
         <input type="datetime-local" v-model="fin">
       </div>
       <div>
-        <v-textarea placeholder="description" v-model="description"/>
+        <v-textarea placeholder="description" v-model="description" class="bigBoi"/>
       </div>
 
-      
-      <v-btn size="x-large" @click="creerAtelier" color="green">Créer l'atelier</v-btn>
+      <div class="flexible">
+        <v-btn size="x-large" @click="creerAtelier" color="green">Créer l'atelier</v-btn>
+        <v-btn size="x-large" @click="toAdmin" color="green">Annuler</v-btn>
+      </div>
   </main>
 </template>
 <style scoped>
@@ -109,4 +111,17 @@ width: 100%;
   margin-bottom: 10vh;
 }
 
+.flexible {
+  display: flex;
+}
+
+.flexible > * {
+  margin: 10px;
+  width:300px;
+}
+
+.bigBoi{
+  margin-top: 20px;
+  width:600px;
+}
 </style>
