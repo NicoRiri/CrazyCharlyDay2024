@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+
 export default {
   data() {
     return {
@@ -7,28 +8,21 @@ export default {
     }
   },
   methods: {
-    toCreateAtelier() {
-      this.$router.push({name: "CreateAtelier"});
-    },
-    toViewAtelier() {
-      this.$router.push({name: "ViewAtelier"});
-    },
     toAdmin() {
       this.$router.push({name: "Admin"});
-    },
-    requete(){
-      let lien = "";
-      axios
-      .get()
-      .then((response) => {
-
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    }
+  },
+    mounted() {
+      axios.get("http://docketu.iutnc.univ-lorraine.fr:35652/atelier").then(
+          (response) => {
+            this.packet = response.data.data;
+          }
+      ).catch((error) => {
+            console.log(error);
+          }
+      )
     }
   }
-}
 </script>
 <template>
   <header>
@@ -49,6 +43,7 @@ export default {
         <p class="spec">place disponible : {{item.placeDispo}}</p>
         <p class="spec">debut : {{item.debut}}</p>
         <p class="spec">fin : {{item.fin}}</p>
+          <v-btn size="x-large" @click="toAdmin" color="green" class="GoBoi">Go</v-btn>
         </div>
         <p class="desc">
           {{ item.description }}</p>
