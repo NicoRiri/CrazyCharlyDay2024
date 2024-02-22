@@ -37,3 +37,6 @@ header[data-v-7a7a37b1]{
 h2{
   font-family: var(--h2-font);
 }
+.page{
+  margin-left:50px;
+}

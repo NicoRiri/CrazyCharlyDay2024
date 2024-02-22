@@ -91,9 +91,7 @@ nav > a {
   color: var(--vt-c-white);
 }
 
-.page{
-  margin-left:50px;
-}
+
 
 .sidebar {
   width: 150px;
