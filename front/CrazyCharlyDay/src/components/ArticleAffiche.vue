@@ -24,8 +24,17 @@ export default {
       } else {
         panier = JSON.parse(panier);
       }
-      panier.push(pack);
-      sessionStorage.setItem('panier', JSON.stringify(panier));
+      let trouve = false;
+      panier.forEach((element) => {
+        if (element.id === pack.id) {
+          alert("Vous avez déjà ajouté cet atelier");
+          trouve = true;
+        }
+      });
+      if(!trouve){
+        panier.push(pack);
+        sessionStorage.setItem('panier', JSON.stringify(panier));
+      }
       this.$root.actualiser();
     }
   },
