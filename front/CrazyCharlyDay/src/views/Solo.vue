@@ -40,11 +40,13 @@ export default {
 
 <template>
 <main>
+  <img alt="Cuisine" src="@/assets/placeholder.png" width="100%" height="100%" />
   <h1>{{ atelier.titre }}</h1>
   <p>{{ atelier.description }}</p>
   <p>{{ atelier.placeDispo }} places</p>
   <p>{{date}}</p>
   <p>{{duree}}</p>
+  <button>Participer</button>
 </main>
 </template>
 
