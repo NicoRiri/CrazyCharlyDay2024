@@ -1,16 +1,13 @@
 @import './base.css';
 
 #app {
-  max-width: 1280px;
+  width:100vw;
   margin: 0 auto;
-  padding: 2rem;
   font-weight: normal;
 }
 
-a,
-.green {
+a {
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
   transition: 0.4s;
   padding: 3px;
 }
@@ -24,12 +21,15 @@ a,
 @media (min-width: 1024px) {
   body {
     display: flex;
+    flex-direction: column;
     place-items: center;
   }
 
   #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
+
   }
+}
+
+header[data-v-7a7a37b1]{
+  background-color: blue;
 }
