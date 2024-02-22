@@ -43,7 +43,6 @@ export default {
         <p class="spec">place disponible : {{item.placeDispo}}</p>
         <p class="spec">debut : {{item.debut}}</p>
         <p class="spec">fin : {{item.fin}}</p>
-          <v-btn size="x-large" @click="toAdmin" color="green" class="GoBoi">Go</v-btn>
         </div>
         <p class="desc">
           {{ item.description }}</p>
