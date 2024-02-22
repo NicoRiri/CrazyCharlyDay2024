@@ -36,4 +36,11 @@ public class State {
     }
     return res;
   }
+
+  @Override
+  public String toString() {
+    return "State{" +
+      "candidats=" + candidats +
+      '}';
+  }
 }
