@@ -100,17 +100,32 @@ main {
 
 .next {
   background-color: var(--vt-c-purple);
+  transition: 0.5s ease all;
   margin:auto;
+  padding: 8px 10px 8px 10px;
+  margin-top: 5px;
+  border: none;
+  color: var(--vt-c-white);
+  font-family: var(--h2-font);
+  font-size: 20px;
+  letter-spacing: 2px;
 }
 
 .before {
   background-color: var(--vt-c-purple);
   margin: auto;
-}
-button{
   transition: 0.5s ease all;
+  padding: 8px 10px 8px 10px;
+  margin-top: 5px;
+  border: none;
+  color: var(--vt-c-white);
+  font-family: var(--h2-font);
+  font-size: 20px;
+  letter-spacing: 2px;
 }
+
 button:hover{
   background-color:var(--vt-c-light-purple);
 }
+
 </style>

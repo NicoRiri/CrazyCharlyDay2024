@@ -75,7 +75,7 @@ export default {
       <p>{{duree}}</p>
       <button @click="ajout()">Participer</button>
     </div>
-    <div id="liste_participants userList">
+    <div id="liste_participants">
       <h2>Participants:</h2>
       <ul>
         <li v-for="(singleUser) in user">
