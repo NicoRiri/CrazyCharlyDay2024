@@ -28,10 +28,14 @@ export default {
 </script>
 
 <template>
-  <header>
+  <nav>
     <RouterLink to="/" class="home button">Home</RouterLink>
-    <img alt="Vue logo" class="logo button" src="@/assets/logo.svg" width="125" height="125" />
+    <img alt="Vue logo" class="logo button" src="@/assets/logo.webp" width="125" height="125" />
     <RouterLink to="/articles" class="article">Article</RouterLink>
+  </nav>
+  <header>
+    <h1>La boîte</h1>
+    <h1>à cuisine</h1>
   </header>
   <div id="mySidebar" class="sidebar" @mouseenter="openNav" @mouseleave="closeNav">
     <div class="buttonGroup">
@@ -51,15 +55,50 @@ export default {
 </template>
 
 <style scoped>
-header {
+nav {
+
   display: flex;
-  line-height: 1.5;
-  background-color: red;
+  line-height: 1;
+  background-color: var(--vt-c-dark-green);
   top: 0;
   left: 0;
   width: 100%;
   align-items: center;
   justify-items: center;
+  justify-content: space-around;
+  font-family: var(--header-font);
+  font-variant: all-petite-caps;
+  font-size: xx-large;
+  height: 8vh;
+}
+nav > a {
+  color: var(--vt-c-beige);
+}
+
+header{
+  background-image: url("./assets/images/header.webp");
+  width: 100%;
+  height: 70vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0px 40%;
+  font-family: var(--header-font);
+  font-variant: all-petite-caps;
+  position: relative;
+  font-size: 6vw;
+  color: var(--vt-c-white);
+  text-shadow: 4px 3px 11px black;
+}
+
+header >h1:nth-child(1) {
+  position: absolute;
+  top: 0vh;
+  left: 19vw;
+}
+header >h1:nth-child(2){
+  position: absolute;
+  bottom: 4vh;
+  right: 19vw;
 }
 
 .sidebar {
