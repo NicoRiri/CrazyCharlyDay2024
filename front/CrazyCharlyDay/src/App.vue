@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import SubAffiche from "@/components/subAffiche.vue";
 import draggable from 'vuedraggable';
+import axios from "axios";
 
 export default {
   components: {
@@ -40,7 +41,32 @@ export default {
       if(this.nom.length>2&&this.prenom.length>2&&this.email.length>2){
         if(this.email.includes("@")&&this.email.includes(".")){
           if(this.donnee.length>0){
-            console.log(this.donnee);
+            let format={
+              "prenom":this.prenom,
+              "nom":this.nom,
+              "voeux": [],
+            }
+            let index=1;
+            this.donnee.forEach((element)=>{
+              format.voeux.push({"id":element.id,"ordre":index});
+              index++;
+            });
+            console.log(format);
+            axios.post("http://docketu.iutnc.univ-lorraine.fr:35652/voeux",format).then(
+              (response)=>{
+                alert(response.data.message);
+                sessionStorage.removeItem('panier');
+                sessionStorage.removeItem('nom');
+                sessionStorage.removeItem('prenom');
+                sessionStorage.removeItem('email');
+                this.donnee=[];
+                this.nom="";
+                this.prenom="";
+                this.email="";
+              }
+            ).catch((error)=>{
+              console.log(error);
+            });
           }else{
             alert("Veuillez selectionner au moins un atelier");
           }

@@ -43,4 +43,10 @@ public class Candidat {
             ", voeuxAccordes=" + voeuxAccordes +
             '}';
   }
+
+  public Candidat clone() {
+    Candidat res = new Candidat(nom, voeux, nbVoeux);
+    res.voeuxAccordes = new ArrayList<>(voeuxAccordes);
+    return res;
+  }
 }

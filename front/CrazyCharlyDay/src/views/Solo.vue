@@ -39,7 +39,7 @@ export default {
 
 <template>
 <main>
-  <img alt="Cuisine" src="@/assets/placeholder.png" width="100%" height="100%" />
+  <img alt="Cuisine" :src="atelier.image" width="100%" height="100%" />
   <h1>{{ atelier.titre }}</h1>
   <p>{{ atelier.description }}</p>
   <p>{{ atelier.placeDispo }} places</p>
