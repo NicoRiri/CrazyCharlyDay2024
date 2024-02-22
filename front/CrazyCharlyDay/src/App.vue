@@ -17,12 +17,22 @@ export default {
     }
   },
   methods: {
-    openNav() {
-  document.getElementById("mySidebar").style.width = "500px";
-},
-    closeNav() {
-  document.getElementById("mySidebar").style.width = "10px";
-}
+    actualiser(){
+      let panier=sessionStorage.getItem('panier');
+      if(panier==null){
+        panier=[];
+      }else{
+        panier=JSON.parse(panier);
+      }
+      this.donnee=panier;
+    },
+    valider(){
+      let panier=sessionStorage.getItem('panier');
+      console.log(panier);
+    }
+  },
+  mounted() {
+    this.actualiser();
   }
 }
 </script>
@@ -41,11 +51,11 @@ export default {
     </div>
     <h2>Ateliers</h2>
     <div class="panier">
-      <div v-for="item in donnee" class="boite">
-        <SubAffiche :nom="item.nom" />
+      <div v-for="(item, index) in donnee" class="boite">
+        <SubAffiche :nom="item" :index="index" />
       </div>
     </div>
-    <button class="valider"><h2>Valider</h2></button>
+    <button @click="valider()" class="valider"><h2>Valider</h2></button>
   </div>
   <section class="page">
     <nav>
