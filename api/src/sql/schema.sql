@@ -43,5 +43,15 @@ CREATE TABLE `voeux` (
   CONSTRAINT `voeux_ibfk_2` FOREIGN KEY (`atelier_id`) REFERENCES `atelier` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+DROP TABLE IF EXISTS `liaison`;
+CREATE TABLE `liaison` (
+  `candidat_id` int(11) DEFAULT NULL,
+  `atelier_id` int(11) DEFAULT NULL,
+  KEY `candidat_id` (`candidat_id`),
+  KEY `atelier_id` (`atelier_id`),
+  CONSTRAINT `liaison_ibfk_1` FOREIGN KEY (`candidat_id`) REFERENCES `utilisateur` (`id`),
+  CONSTRAINT `liaison_ibfk_2` FOREIGN KEY (`atelier_id`) REFERENCES `atelier` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
 
 -- 2024-02-22 16:48:11
