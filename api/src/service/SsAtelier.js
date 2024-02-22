@@ -4,9 +4,18 @@ import config from "../knex.js";
 class SsAtelier {
     static db = knex(config.development);
 
-    static async getAtelier() {
+    static async getAtelier(req, res, next) {
         try {
             return await SsAtelier.db('atelier').select('*');
+        } catch (err) {
+            console.error(err);
+            throw new Error("can't find atelier");
+        }
+    }
+
+    static async getAtelierById(req, res, next) {
+        try {
+            return await SsAtelier.db('atelier').where('id', req.params.id).select('*').first();
         } catch (err) {
             console.error(err);
             throw new Error("can't find atelier");
