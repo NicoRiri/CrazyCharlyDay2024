@@ -39,12 +39,13 @@ export default {
       <h2>Email</h2>
     <input v-model="email" type="email" placeholder="Entrer votre email" required>
     </div>
+    <h2>Ateliers</h2>
     <div class="panier">
       <div v-for="item in donnee" class="boite">
         <SubAffiche :nom="item.nom" />
       </div>
     </div>
-    <button class="valider">Valider</button>
+    <button class="valider"><h2>Valider</h2></button>
   </div>
   <section class="page">
     <nav>
@@ -139,6 +140,7 @@ nav > a {
   grid-template-columns: 47.5% 47.5%;
   grid-column-gap: 5%;
   grid-row-gap: 5px;
+  margin-bottom: 20px;
 }
 
 .buttonGroup> h2:nth-child(1){
@@ -194,11 +196,18 @@ nav > a {
   background-color:transparent;
   border: 2px solid var(--color-border);
   padding: 5px;
-  margin-top: 20px;
+  height: 60vh;
+  overflow: auto;
 }
 
 .valider{
   background-color: green;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  padding: 8px 10px 8px 10px;
+  margin-top: 5px;
+  border: none;
+  color: var(--vt-c-white);
 }
 
 </style>
