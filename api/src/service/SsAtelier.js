@@ -13,6 +13,16 @@ class SsAtelier {
         }
     }
 
+    static async getNbAtelier(req, res, next) {
+        try {
+            const res = await SsAtelier.db('atelier').count('id as nb').first();
+            return Math.ceil(res.nb / 5);
+        } catch (err) {
+            console.error(err);
+            throw new Error("can't find atelier");
+        }
+    }
+
     static async getAtelierById(req, res, next) {
         try {
             return await SsAtelier.db('atelier').where('id', req.params.id).select('*').first();

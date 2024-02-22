@@ -3,6 +3,7 @@ import {GetAtelierAction} from "../actions/GetAtelierAction.js";
 import {GetAtelierByIdAction} from "../actions/GetAtelierByIdAction.js";
 import {GetAtelierByPageAction} from "../actions/GetAtelierByPageAction.js";
 import {PostAtelierAction} from "../actions/PostAtelierAction.js";
+import {GetAtelierNbPageAction} from "../actions/GetAtelierNbPageAction.js";
 
 const router = express.Router();
 
@@ -13,6 +14,13 @@ router
     })
     .post((req, res, next) => {
         PostAtelierAction(req, res, next)
+    })
+    .all((req, res, next) => next(405)); //method not allowed
+
+router
+    .route("/pages")
+    .get((req, res, next) => {
+        GetAtelierNbPageAction(req, res, next)
     })
     .all((req, res, next) => next(405)); //method not allowed
 
