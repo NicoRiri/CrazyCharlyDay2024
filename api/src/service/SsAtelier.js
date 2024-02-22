@@ -30,6 +30,15 @@ class SsAtelier {
             throw new Error("can't find atelier");
         }
     }
+
+    static async postAtelier(req, res, next) {
+        try {
+            return await SsAtelier.db('atelier').insert({titre: req.body.titre, description: req.body.description, theme: req.body.theme, placeDispo: req.body.placeDispo, image: req.body.image, debut: req.body.debut, fin: req.body.fin});
+        } catch (err) {
+            console.error(err);
+            throw new Error("can't find atelier");
+        }
+    }
 }
 
 export default SsAtelier;
