@@ -1,0 +1,3 @@
+scoring
+classe State : représente un état où tous les ateliers sont pleins/tous les candidats ont le nombre max d'affectations
+classe Algo Recuit Simulé:
