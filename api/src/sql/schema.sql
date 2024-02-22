@@ -9,8 +9,9 @@ SET NAMES utf8mb4;
 
 DROP TABLE IF EXISTS `atelier`;
 CREATE TABLE `atelier` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) DEFAULT NULL,
+  `description` varchar(255) NOT NULL,
   `theme` varchar(255) DEFAULT NULL,
   `placeDispo` int(11) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
@@ -20,21 +21,9 @@ CREATE TABLE `atelier` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
-DROP TABLE IF EXISTS `demande`;
-CREATE TABLE `demande` (
-  `candidat_id` int(11) DEFAULT NULL,
-  `atelier_id` int(11) DEFAULT NULL,
-  `ordrePrio` int(11) DEFAULT NULL,
-  KEY `candidat_id` (`candidat_id`),
-  KEY `atelier_id` (`atelier_id`),
-  CONSTRAINT `demande_ibfk_1` FOREIGN KEY (`candidat_id`) REFERENCES `utilisateur` (`id`),
-  CONSTRAINT `demande_ibfk_2` FOREIGN KEY (`atelier_id`) REFERENCES `atelier` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-
 DROP TABLE IF EXISTS `utilisateur`;
 CREATE TABLE `utilisateur` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) DEFAULT NULL,
   `admin` tinyint(1) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
@@ -42,4 +31,16 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
--- 2024-02-22 09:57:59
+DROP TABLE IF EXISTS `voeux`;
+CREATE TABLE `voeux` (
+  `candidat_id` int(11) DEFAULT NULL,
+  `atelier_id` int(11) DEFAULT NULL,
+  `ordrePrio` int(11) DEFAULT NULL,
+  KEY `candidat_id` (`candidat_id`),
+  KEY `atelier_id` (`atelier_id`),
+  CONSTRAINT `voeux_ibfk_1` FOREIGN KEY (`candidat_id`) REFERENCES `utilisateur` (`id`),
+  CONSTRAINT `voeux_ibfk_2` FOREIGN KEY (`atelier_id`) REFERENCES `atelier` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- 2024-02-22 12:59:01
