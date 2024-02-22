@@ -29,10 +29,34 @@ export default {
         const minutesRestantes = Math.floor((differenceEnMillisecondes % (1000 * 60 * 60)) / (1000 * 60));
         this.duree=jours+" jours "+heuresRestantes+" heures "+minutesRestantes+" minutes";
         this.date = debut;
+        console.log(this.user);
       })
       .catch((error) => {
         console.log(error);
       });
+  },
+  methods:{
+    ajout() {
+      let pack = {id: this.atelier.id, titre: this.atelier.titre, date: this.date};
+      let panier = sessionStorage.getItem('panier');
+      if (panier == null) {
+        panier = [];
+      } else {
+        panier = JSON.parse(panier);
+      }
+      let trouve = false;
+      panier.forEach((element) => {
+        if (element.id === pack.id) {
+          alert("Vous avez déjà ajouté cet atelier");
+          trouve = true;
+        }
+      });
+      if(!trouve){
+        panier.push(pack);
+        sessionStorage.setItem('panier', JSON.stringify(panier));
+      }
+      this.$root.actualiser();
+    }
   }
 }
 </script>
@@ -45,7 +69,13 @@ export default {
   <p>{{ atelier.placeDispo }} places</p>
   <p>{{date}}</p>
   <p>{{duree}}</p>
-  <button>Participer</button>
+  <button @click="ajout()">Participer</button>
+  <div class="userList">
+    <h1>Participant actuel</h1>
+    <p v-for="item in user">
+      {{item.prenom}} {{item.nom}}
+    </p>
+  </div>
 </main>
 </template>
 
