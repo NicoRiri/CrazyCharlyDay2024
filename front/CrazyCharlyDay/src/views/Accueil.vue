@@ -7,6 +7,8 @@
     <h1>
 Bienvenue sur CrazyCharlyDay
     </h1>
+    <img src="../assets/images/Logo_aars.png" width="300px" height="195px">
+    <p></p>
   </main>
 </template>
 
@@ -30,6 +32,10 @@ header{
   font-size: 6vw;
   color: var(--vt-c-white);
   text-shadow: 4px 3px 11px black;
+}
+h1{
+  color: var(--vt-c-white);
+
 }
 
 header >h1:nth-child(1) {

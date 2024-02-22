@@ -26,15 +26,19 @@ export default {
 </script>
 
 <template>
-  <h1>{{nom.titre}}</h1>
-  <p>{{nom.date}}</p>
-  <button @click="deleteItem()">Supprimer</button>
+  <div class="card-Atelier">
+    <h1>{{nom.titre}}</h1>
+    <p>{{nom.date}}</p>
+    <button @click="deleteItem()">Supprimer</button>
+  </div>
+
 </template>
 
 <style scoped>
 h1 {
-  color: red;
+  color: var(--vt-c-purple);
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 0px;
 }
+
 </style>
