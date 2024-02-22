@@ -74,4 +74,8 @@ public class State {
       "candidats=" + candidats +
       '}';
   }
+
+  public String toJson(){
+    return "{candidats: " + candidats + "}";
+  }
 }
