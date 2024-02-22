@@ -1,11 +1,8 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -35,70 +32,14 @@ public class URLToJson {
         }
     }
 
-    /* exemple de json
-    {
-    "data": [
-        {
-            "id": 3,
-            "nom": "Charlie",
-            "email": "charlie@mail.com",
-            "voeux": [
-                {
-                    "id": 2,
-                    "titre": "Français",
-                    "theme": "FR",
-                    "ordre": 2
-                }
-            ]
-        },
-        {
-            "id": 5,
-            "nom": "Eve",
-            "email": "eve@mail.com",
-            "voeux": [
-                {
-                    "id": 5,
-                    "titre": "Orientale",
-                    "theme": "OR",
-                    "ordre": 2
-                }
-            ]
-        },
-        {
-            "id": 6,
-            "nom": "un",
-            "email": "ultranigga@mail.com",
-            "voeux": [
-                {
-                    "id": 2,
-                    "titre": "Français",
-                    "theme": "FR",
-                    "ordre": 3
-                }
-            ]
-        },
-        {
-            "id": 7,
-            "nom": "Edouard",
-            "email": null,
-            "voeux": [
-                {
-                    "id": 2,
-                    "titre": "Français",
-                    "theme": "FR",
-                    "ordre": 1
-                },
-                {
-                    "id": 3,
-                    "titre": "Amérique du Sud",
-                    "theme": "MEX",
-                    "ordre": 2
-                }
-            ]
+    public static void sendJsonToUrl(String url, String JSon) throws IOException, JSONException {
+        OutputStream os = new URL(url + "/voeux/resultat").openConnection().getOutputStream();
+        try {
+            os.write(JSon.getBytes());
+        } finally {
+            os.close();
         }
-    ]
-}
-     */
+    }
     public static void main(String[] args) throws IOException, JSONException {//gestion ateliers
         JSONObject jsonAtelier = readJsonFromUrl(lienDuSite + "/atelier");
         JSONArray arrayAtelier = (JSONArray) jsonAtelier.get("data");
@@ -109,10 +50,12 @@ public class URLToJson {
             ateliers[i[0]] = new Atelier((String) atelier.get("theme"), (int) atelier.get("placeDispo"));
             i[0]++;
         });
+        System.out.println(Arrays.toString(ateliers));
 
         //gestion voeux
         JSONObject jsonVoeu = readJsonFromUrl(lienDuSite + "/voeux");
         JSONArray arrayVoeu = (JSONArray) jsonVoeu.get("data");
+        System.out.println(arrayVoeu);
 
         List<Candidat> candidats = new ArrayList<>();
         arrayVoeu.forEach(voeu -> {
@@ -125,11 +68,15 @@ public class URLToJson {
                 voeux[j[0]] = ateliers[(int) voeu1.get("ordre") - 1];
                 j[0]++;
             });
-            candidats.add(new Candidat((String) candidat.get("nom"), voeux, 3));
+            candidats.add(new Candidat((String) candidat.get("nom"), voeux, voeux.length));
         });
 
         AlgoRecuitSimule algo = new AlgoRecuitSimule();
         State s = algo.algo(candidats, List.of(ateliers));
+
         System.out.println(s.toJson());
+        sendJsonToUrl(lienDuSite, s.toJson());
+
+
     }
 }

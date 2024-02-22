@@ -5,6 +5,7 @@ public class CalculateurDeScore {
   public static int[] poidsVoeud = {10, 8, 6, 4, 2, 1};
 
   public static int score(List<Candidat> candidats) {
+    //System.out.println(candidats);
     int score = 0;
     int maxVoeux = 0;
     //gain par preference

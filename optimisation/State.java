@@ -76,6 +76,15 @@ public class State {
   }
 
   public String toJson(){
-    return "{candidats: " + candidats + "}";
+    String res = "{\n" +
+      "  \"candidats\": [\n";
+    for (int i = 0; i < candidats.size(); i++) {
+      res += candidats.get(i).toJson();
+      if (i != candidats.size() - 1) {
+        res += ",\n";
+      }
+    }
+    res += "\n  ]\n}";
+    return res;
   }
 }

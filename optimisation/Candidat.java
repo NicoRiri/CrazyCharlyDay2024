@@ -49,4 +49,18 @@ public class Candidat {
     res.voeuxAccordes = new ArrayList<>(voeuxAccordes);
     return res;
   }
+
+  public String toJson() {
+    String res = "{" +
+            "\"nom\" : \"" + nom + '\"' +
+            ", \"voeuxAccordes\" : [";
+    for (int i = 0; i < voeuxAccordes.size(); i++) {
+      res +="{\"theme\" : \"" + voeuxAccordes.get(i) + "\"}";
+      if (i != voeuxAccordes.size() - 1) {
+        res += ", ";
+      }
+    }
+    res += "]}";
+    return res;
+  }
 }
