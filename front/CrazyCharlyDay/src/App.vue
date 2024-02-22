@@ -32,8 +32,11 @@ export default {
   <!--<div id="mySidebar" class="sidebar" @mouseenter="openNav" @mouseleave="closeNav">-->
   <div id="mySidebar" class="sidebar">
     <div class="buttonGroup">
+      <h2>Nom</h2>
     <input v-model="nom" placeholder="Entrer votre nom" required>
+      <h2>Prénom</h2>
     <input v-model="prenom" placeholder="Entrer votre prenom" required>
+      <h2>Email</h2>
     <input v-model="email" type="email" placeholder="Entrer votre email" required>
     </div>
     <div class="panier">
@@ -46,7 +49,7 @@ export default {
   <section class="page">
     <nav>
       <RouterLink to="/" class="home button">Home</RouterLink>
-      <img alt="Vue logo" class="logo button" src="@/assets/logo.svg" width="125" height="125" />
+      <img alt="Vue logo" class="logo button" src="@/assets/logo.webp" width="125" height="125" />
       <RouterLink to="/articles/1" class="article">Article</RouterLink>
     </nav>
 
@@ -81,28 +84,12 @@ nav > a {
   margin-left:50px;
 }
 
-
-
-/*.sidebar {
-  height: 85vh;
-  width: 200px;
-  position: fixed;
-  z-index: 1;
-  top: 70px;
-  left: 0;
-  background-color: var(--color-background-soft);
-  overflow-x: hidden;
-  transition: 0.5s;
-  padding-top: 60px;
-  transform: translateX(-90%);
-  opacity: 0.5;
-}*/
 .sidebar {
   width: 150px;
   height: 100vh;
   border: none;
   margin-top: 0px;
-  padding: 10px 5px 10px 20px;
+  padding: 30px 5px 10px 25px;
   position: fixed;
   top: 0px;
   left: 0px;
@@ -139,13 +126,51 @@ nav > a {
 }
 
 .sidebar:hover::after {
-  right: 0px;
+  right: 1px;
   opacity: 1;
-  transform: translateX(0%);
 }
 
-.sidebar input{
 
+
+.buttonGroup
+{
+  display: grid;
+  grid-template-rows: 30px 30px 30px 30px;
+  grid-template-columns: 47.5% 47.5%;
+  grid-column-gap: 5%;
+  grid-row-gap: 5px;
+}
+
+.buttonGroup> h2:nth-child(1){
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.buttonGroup >input:nth-child(2){
+  grid-row: 2;
+  grid-column: 1;
+}
+.buttonGroup> h2:nth-child(3){
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.buttonGroup >input:nth-child(4){
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.buttonGroup>h2:nth-child(5)
+{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row: 3;
+}
+
+.buttonGroup>input:nth-child(6){
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row: 4;
 }
 
 .closebtn {
@@ -166,9 +191,9 @@ nav > a {
 }
 
 .panier{
-  background-color:yellow;
-  padding-top: 5px;
-  padding-bottom: 5px;
+  background-color:transparent;
+  border: 2px solid var(--color-border);
+  padding: 5px;
   margin-top: 20px;
 }
 
