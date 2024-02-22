@@ -15,31 +15,23 @@ export default {
       email: '',
       donnee: [{ id: 1, nom: "Cuisine Français", date: "2022-03-18" }, { id: 2, nom: "Cuisine Anglaise", date: "2023-03-17" }],
     }
-  },
+  }/*,
   methods: {
     openNav() {
   document.getElementById("mySidebar").style.width = "500px";
 },
     closeNav() {
-  document.getElementById("mySidebar").style.width = "10px";
+  document.getElementById("mySidebar").style.width = "110px";
 }
-  }
+  }*/
 }
 </script>
 
 <template>
-  <nav>
-    <RouterLink to="/" class="home button">Home</RouterLink>
-    <img alt="Vue logo" class="logo button" src="@/assets/logo.webp" width="125" height="125" />
-    <RouterLink to="/articles" class="article">Article</RouterLink>
-  </nav>
-  <header>
-    <h1>La boîte</h1>
-    <h1>à cuisine</h1>
-  </header>
-  <div id="mySidebar" class="sidebar" @mouseenter="openNav" @mouseleave="closeNav">
+
+  <!--<div id="mySidebar" class="sidebar" @mouseenter="openNav" @mouseleave="closeNav">-->
+  <div id="mySidebar" class="sidebar">
     <div class="buttonGroup">
-    <a href="javascript:void(0)" class="closebtn" @click="closeNav">×</a>
     <input v-model="nom" placeholder="Entrer votre nom" required>
     <input v-model="prenom" placeholder="Entrer votre prenom" required>
     <input v-model="email" type="email" placeholder="Entrer votre email" required>
@@ -51,7 +43,16 @@ export default {
     </div>
     <button class="valider">Valider</button>
   </div>
-  <RouterView />
+  <section class="page">
+    <nav>
+      <RouterLink to="/" class="home button">Home</RouterLink>
+      <img alt="Vue logo" class="logo button" src="@/assets/logo.webp" width="125" height="125" />
+      <RouterLink to="/articles" class="article">Article</RouterLink>
+    </nav>
+
+    <RouterView />
+  </section>
+
 </template>
 
 <style scoped>
@@ -70,48 +71,81 @@ nav {
   font-variant: all-petite-caps;
   font-size: xx-large;
   height: 8vh;
+  letter-spacing: 3px;
 }
 nav > a {
-  color: var(--vt-c-beige);
-}
-
-header{
-  background-image: url("./assets/images/header.webp");
-  width: 100%;
-  height: 70vh;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 0px 40%;
-  font-family: var(--header-font);
-  font-variant: all-petite-caps;
-  position: relative;
-  font-size: 6vw;
   color: var(--vt-c-white);
-  text-shadow: 4px 3px 11px black;
 }
 
-header >h1:nth-child(1) {
-  position: absolute;
-  top: 0vh;
-  left: 19vw;
-}
-header >h1:nth-child(2){
-  position: absolute;
-  bottom: 4vh;
-  right: 19vw;
+.page{
+  margin-left:50px;
 }
 
-.sidebar {
-  height: 100%;
-  width: 10px;
+
+
+/*.sidebar {
+  height: 85vh;
+  width: 200px;
   position: fixed;
   z-index: 1;
-  top: 0;
+  top: 70px;
   left: 0;
-  background-color: #111;
+  background-color: var(--color-background-soft);
   overflow-x: hidden;
   transition: 0.5s;
   padding-top: 60px;
+  transform: translateX(-90%);
+  opacity: 0.5;
+}*/
+.sidebar {
+  width: 150px;
+  height: 100vh;
+  border: none;
+  margin-top: 0px;
+  padding: 10px 5px 10px 20px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-color: var(--color-background-soft);
+  transition: 0.5s ease all;
+  font-size: 14px;
+  transform: translate(-100%);
+  opacity: 1;
+  z-index: 5;
+}
+
+.sidebar::after {
+  content: '';
+  position: absolute;
+  background-color: var(--color-background-soft);
+  background-image: url(http://ekladata.com/Ue5tUXtZyteBdhOB67TNsBku8IM/dots.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50px;
+  transform: translateX(100%);
+  transition: 0.5s ease all;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+.sidebar:hover {
+  transform: translateX(0%);
+  opacity: 1;
+  width: 30vw;
+}
+
+.sidebar:hover::after {
+  right: 0px;
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.sidebar input{
+
 }
 
 .closebtn {
