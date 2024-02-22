@@ -56,7 +56,36 @@ export default {
 
 <style>
 .boite {
-  background-color: blue;
+  position: relative;
+  background-color: var(--color-background-soft);
+  width:80%;
+  margin: auto;
+  height: 200px;
+  border-bottom: var(--color-background) 3.5px dashed;
+}
+.boite::before{
+  content: '';
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: var(--color-background);
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, 55%);
+  z-index: 2;
+}
+.boite::after{
+  content: '';
+  position: absolute;
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: var(--color-background);
+  bottom: 0;
+  right: 0;
+  transform: translate(50%, 55%);
+  z-index: 2;
 }
 
 main {
@@ -66,13 +95,40 @@ main {
 .pageTurn {
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
 }
 
 .next {
-  background-color: pink;
+  background-color: var(--vt-c-purple);
+  transition: 0.5s ease all;
+  margin:auto;
+  padding: 8px 10px 8px 10px;
+  margin-top: 5px;
+  border: none;
+  color: var(--vt-c-white);
+  font-family: var(--h2-font);
+  font-size: 20px;
+  letter-spacing: 2px;
 }
 
 .before {
-  background-color: purple;
+  background-color: var(--vt-c-purple);
+  margin: auto;
+  transition: 0.5s ease all;
+  padding: 8px 10px 8px 10px;
+  margin-top: 5px;
+  border: none;
+  color: var(--vt-c-white);
+  font-family: var(--h2-font);
+  font-size: 20px;
+  letter-spacing: 2px;
 }
+
+button:hover{
+  background-color:var(--vt-c-light-purple);
+}
+h1{
+  color: var(--vt-c-purple);
+}
+
 </style>

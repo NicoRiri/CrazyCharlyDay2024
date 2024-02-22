@@ -55,37 +55,92 @@ export default {
 <template>
   <div class="subMenu">
     <div class="subAffiche">
-      <h1>{{ donnee.titre }}</h1>
-      <p>{{ donnee.description }}</p>
-      <p>{{ duree }}</p>
-      <p>{{ date }}</p>
-      <button @click="reroute(donnee.id)">Voir plus</button>
-      <button @click="ajout()">Participer</button>
+      <h2>{{ donnee.titre }}</h2>
+      <p><span>{{ date }}</span> <span>durée: {{ duree }}</span></p>
+      <div id="description_atelier">{{ donnee.description }} </div>
+      <div>
+        <button @click="reroute(donnee.id)">Voir plus</button>
+        <button @click="ajout()">Participer</button>
+      </div>
+
     </div>
-    <img alt="Cuisine" :src="donnee.image" width="500px" height="250px"/>
+    <div class="illustration_atelier"><img alt="Cuisine" :src="donnee.image" /></div>
+
   </div>
 </template>
 
 <style scoped>
-h1 {
-  color: red;
-  margin-top: 20px;
-  margin-bottom: 20px;
+.subAffiche h2 {
 }
 
 .subMenu {
   display: flex;
+  justify-content: space-between;
 }
 
 .subAffiche {
-  width: 80%;
-  margin-left: 20px;
+  width: 60%;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px 0px 20px 0px;
+}
+
+.subAffiche > p{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  color: var(--vt-c-light-green);
+}
+
+.subAffiche > p > span:nth-child(2)
+{
+  font-size: small;
+}
+
+#description_atelier{
+  margin: 5px 0px 5px 0px;
+  overflow: auto;
+  height: 40px;
 }
 
 img {
-  margin-left: 20px;
+  width: 100%;
+
+}
+.illustration_atelier
+{
+  clip-path: polygon(
+  30% 0%,
+  100% 0%,
+  100% 100%,
+  0% 100%
+  );
+  width:450px;
+  height:196px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+button{
   margin-right: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+}
+button{
+  background-color: var(--vt-c-dark-green);
+  padding: 8px 10px 8px 10px;
+  margin-top: 5px;
+  border: none;
+  color: var(--vt-c-white);
+  font-family: var(--h2-font);
+  font-size: 20px;
+  letter-spacing: 2px;
+}
+h2{
+  font-family: var(--h2-font);
+  color: var(--vt-c-dark-green);
+}
+h1{
+  color: var(--vt-c-purple);
 }
 </style>

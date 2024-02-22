@@ -1,6 +1,5 @@
 <script>
 import axios from "axios";
-
 export default {
   data() {
     return {
@@ -8,21 +7,28 @@ export default {
     }
   },
   methods: {
+    toCreateAtelier() {
+      this.$router.push({name: "CreateAtelier"});
+    },
+    toViewAtelier() {
+      this.$router.push({name: "ViewAtelier"});
+    },
     toAdmin() {
       this.$router.push({name: "Admin"});
-    }
-  },
-    mounted() {
-      axios.get("http://docketu.iutnc.univ-lorraine.fr:35652/atelier").then(
-          (response) => {
-            this.packet = response.data.data;
-          }
-      ).catch((error) => {
-            console.log(error);
-          }
-      )
+    },
+    requete(){
+      let lien = "";
+      axios
+      .get()
+      .then((response) => {
+
+      })
+      .catch((error) => {
+        console.log(error);
+      })
     }
   }
+}
 </script>
 <template>
   <header>

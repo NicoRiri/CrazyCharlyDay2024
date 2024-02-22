@@ -123,7 +123,7 @@ export default {
           </template>
         </draggable>
       </div>
-      <button @click="valider()" class="valider"><h2>Valider</h2></button>
+      <button @click="valider()" class="valider">Valider</button>
     </div>
     <section class="page">
       <nav>
@@ -138,6 +138,9 @@ export default {
 </template>
 
 <style scoped>
+h1{
+  color: var(--vt-c-purple);
+}
 nav {
 
   display: flex;
@@ -277,13 +280,26 @@ nav > a {
 }
 
 .valider{
-  background-color: green;
   margin-left: 50%;
   transform: translateX(-50%);
   padding: 8px 10px 8px 10px;
+  background-color: var(--vt-c-dark-green);
   margin-top: 5px;
   border: none;
   color: var(--vt-c-white);
+  font-family: var(--h2-font);
+  font-size: 20px;
+  letter-spacing: 2px;
 }
+h2{
+  font-family: var(--h2-font);
+  color: var(--vt-c-dark-green);
+}
+
+input{
+  border: 1px solid var(--vt-c-dark-green);
+  padding-left: 10px;
+}
+
 
 </style>

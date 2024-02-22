@@ -10,12 +10,22 @@ a {
   text-decoration: none;
   transition: 0.4s;
   padding: 3px;
+  position: relative;
+}
+a::before{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0px;
+  height: 1px;
+  background-color: var(--color-background);
+  transition: 0.5s all ease;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+
+a:hover::before{
+  width: 100%;
 }
 
 @media (min-width: 1024px) {
@@ -30,13 +40,22 @@ a {
   }
 }
 
-header[data-v-7a7a37b1]{
-  background-color: blue;
-}
 
 h2{
   font-family: var(--h2-font);
+  color: var(--vt-c-dark-green);
 }
 .page{
   margin-left:50px;
+}
+
+button{
+  background-color: var(--vt-c-dark-green);
+  padding: 8px 10px 8px 10px;
+  margin-top: 5px;
+  border: none;
+  color: var(--vt-c-white);
+  font-family: var(--h2-font);
+  font-size: 20px;
+  letter-spacing: 2px;
 }

@@ -37,7 +37,8 @@ public class Atelier {
 
     @Override
     public String toString() {
-        return nom;
+        return nom + " " + nbPlacesRestantes;
+
     }
 
     public Atelier clone() {
