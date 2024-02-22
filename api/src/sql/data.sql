@@ -15,13 +15,13 @@ INSERT INTO `atelier` (`id`, `titre`, `description`, `theme`, `placeDispo`, `ima
 (5,	'Orientale',	'patepate',	'OR',	30,	'https://i.pinimg.com/originals/d7/c6/f7/d7c6f739c55a93b2b1deccf927bddeb6.jpg',	'2024-02-24 09:00:00',	'2024-02-25 09:00:00'),
 (6,	'Grecque',	'souflaki',	'GR',	20,	'https://s1.1zoom.me/b5050/712/Greece_Coast_Sea_Houses_501550_1920x1080.jpg',	'2024-02-22 09:00:00',	'2024-02-23 12:00:00');
 
-INSERT INTO `utilisateur` (`id`, `nom`, `admin`, `email`) VALUES
-(1,	'Alice',	1,	'alice@mail.com'),
-(2,	'Bob',	0,	'bob@mail.com'),
-(3,	'Charlie',	0,	'charlie@mail.com'),
-(4,	'Diana',	1,	'diana@mail.com'),
-(5,	'Eve',	0,	'eve@mail.com'),
-(6,	'un',	0,	'ultranigga@mail.com');
+INSERT INTO `utilisateur` (`id`, `nom`, `prenom`, `admin`, `email`) VALUES
+(1,	'Alice', 'thunderberg',	1,	'alice@mail.com'),
+(2,	'Bob', 'thunderberg',	0,	'bob@mail.com'),
+(3,	'Charlie', 'thunderberg',	0,	'charlie@mail.com'),
+(4,	'Diana', 'thunderberg',	1,	'diana@mail.com'),
+(5,	'Eve', 'thunderberg',	0,	'eve@mail.com'),
+(6,	'un', 'thunderberg',	0,	'ultranigga@mail.com');
 
 INSERT INTO `voeux` (`candidat_id`, `atelier_id`, `ordrePrio`) VALUES
 (6,	1,	1),
