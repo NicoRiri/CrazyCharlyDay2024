@@ -39,4 +39,10 @@ public class Atelier {
     public String toString() {
         return nom;
     }
+
+    public Atelier clone() {
+        Atelier res = new Atelier(nom, nbPlaces);
+        res.nbPlacesRestantes = nbPlaces;
+        return res;
+    }
 }
