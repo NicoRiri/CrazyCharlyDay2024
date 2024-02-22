@@ -15,15 +15,15 @@ export default {
       email: '',
       donnee: [{ id: 1, nom: "Cuisine Français", date: "2022-03-18" }, { id: 2, nom: "Cuisine Anglaise", date: "2023-03-17" }],
     }
-  }/*,
+  },
   methods: {
     openNav() {
   document.getElementById("mySidebar").style.width = "500px";
 },
     closeNav() {
-  document.getElementById("mySidebar").style.width = "110px";
+  document.getElementById("mySidebar").style.width = "10px";
 }
-  }*/
+  }
 }
 </script>
 
@@ -46,11 +46,11 @@ export default {
   <section class="page">
     <nav>
       <RouterLink to="/" class="home button">Home</RouterLink>
-      <img alt="Vue logo" class="logo button" src="@/assets/logo.webp" width="125" height="125" />
-      <RouterLink to="/articles" class="article">Article</RouterLink>
+      <img alt="Vue logo" class="logo button" src="@/assets/logo.svg" width="125" height="125" />
+      <RouterLink to="/articles/1" class="article">Article</RouterLink>
     </nav>
 
-    <RouterView />
+    <RouterView :key="$route.path"/>
   </section>
 
 </template>
