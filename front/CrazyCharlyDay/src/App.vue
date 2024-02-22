@@ -20,7 +20,7 @@ export default {
   },
   computed: {
     adminRoute(){
-      return this.$route.name === "Admin";
+      return this.$route.name === "Admin" || this.$route.name === "CreateAtelier" || this.$route.name === "ViewAtelier"
     }
   },
   methods: {
