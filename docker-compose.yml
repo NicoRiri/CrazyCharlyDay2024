@@ -1,0 +1,26 @@
+version: "3"
+services:
+  front:
+    image : httpd
+    ports:
+      - "6980:80"
+    volumes:
+        - ./front:/usr/local/apache2/htdocs
+
+  mariadb:
+    image: mariadb
+    env_file:
+      - .env
+    ports:
+      - "3306:3306"
+
+  api:
+    image: node:alpine
+    env_file:
+      - .env
+    environment:
+        - NODE_ENV=development
+    volumes:
+        - ./api:/app
+    ports:
+        - "3000:3000"
