@@ -1,0 +1,25 @@
+
+
+<project>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.ccd</groupId>
+    <artifactId>crasy-charly-day</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0-SNAPSHOT</version>
+
+    <name>crasy-charly-day</name>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20240205</version>
+        </dependency>
+    </dependencies>
+</project>
+
