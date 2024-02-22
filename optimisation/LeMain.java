@@ -16,7 +16,8 @@ public class LeMain {
     }
     AlgoRecuitSimule algo = new AlgoRecuitSimule();
     State s = algo.algo(candidats, ateliers);
-    System.out.println(s);
+    //System.out.println(s);
+    System.out.println(s.toJson());
     System.out.println(s.getScore());
   }
 }

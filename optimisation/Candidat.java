@@ -46,7 +46,7 @@ public class Candidat {
 
   public Candidat clone() {
     Candidat res = new Candidat(nom, voeux, nbVoeux);
-    res.voeuxAccordes = new ArrayList<>();
+    res.voeuxAccordes = new ArrayList<>(voeuxAccordes);
     return res;
   }
 }

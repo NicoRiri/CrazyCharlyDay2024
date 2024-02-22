@@ -29,19 +29,79 @@ public class URLToJson {
         try {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             String jsonText = readAll(rd);
-            JSONObject json = new JSONObject(jsonText);
-            return json;
+            return new JSONObject(jsonText);
         } finally {
             is.close();
         }
     }
 
-    public static void main(String[] args) throws IOException, JSONException {
-        //gestion ateliers
+    /* exemple de json
+    {
+    "data": [
+        {
+            "id": 3,
+            "nom": "Charlie",
+            "email": "charlie@mail.com",
+            "voeux": [
+                {
+                    "id": 2,
+                    "titre": "Français",
+                    "theme": "FR",
+                    "ordre": 2
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "nom": "Eve",
+            "email": "eve@mail.com",
+            "voeux": [
+                {
+                    "id": 5,
+                    "titre": "Orientale",
+                    "theme": "OR",
+                    "ordre": 2
+                }
+            ]
+        },
+        {
+            "id": 6,
+            "nom": "un",
+            "email": "ultranigga@mail.com",
+            "voeux": [
+                {
+                    "id": 2,
+                    "titre": "Français",
+                    "theme": "FR",
+                    "ordre": 3
+                }
+            ]
+        },
+        {
+            "id": 7,
+            "nom": "Edouard",
+            "email": null,
+            "voeux": [
+                {
+                    "id": 2,
+                    "titre": "Français",
+                    "theme": "FR",
+                    "ordre": 1
+                },
+                {
+                    "id": 3,
+                    "titre": "Amérique du Sud",
+                    "theme": "MEX",
+                    "ordre": 2
+                }
+            ]
+        }
+    ]
+}
+     */
+    public static void main(String[] args) throws IOException, JSONException {//gestion ateliers
         JSONObject jsonAtelier = readJsonFromUrl(lienDuSite + "/atelier");
-
         JSONArray arrayAtelier = (JSONArray) jsonAtelier.get("data");
-
         Atelier[] ateliers = new Atelier[arrayAtelier.length()];
         final int[] i = {0};
         arrayAtelier.forEach(atel -> {
@@ -52,36 +112,24 @@ public class URLToJson {
 
         //gestion voeux
         JSONObject jsonVoeu = readJsonFromUrl(lienDuSite + "/voeux");
-
         JSONArray arrayVoeu = (JSONArray) jsonVoeu.get("data");
 
-        //construire une liste de candidats et une liste d'ateliers
         List<Candidat> candidats = new ArrayList<>();
-        arrayVoeu.forEach(candid -> {
-            JSONObject candidat = (JSONObject) candid;
-            String nom = (String) candidat.get("nom");
-            JSONArray voeux = (JSONArray) candidat.get("voeux");
-            Atelier[] voeuxCandidats = new Atelier[voeux.length()];
-            int u = 0;
-            //boucle trop compliquée pour ajouter les voeux
-            for(Object vo:voeux){
-                JSONObject voeu = (JSONObject) vo;
-
-                String at = (String) voeu.get("theme");
-
-                for (int j = 0; j< ateliers.length; j++){
-                    if(at.equals(ateliers[j].getNom())){
-                        voeuxCandidats[u] = ateliers[j];
-                        u++;
-                    }
-                }
-
-                //Ordre des voeux ici TODO
-            }
-
-            candidats.add(new Candidat(nom, voeuxCandidats, voeux.length()));
+        arrayVoeu.forEach(voeu -> {
+            JSONObject candidat = (JSONObject) voeu;
+            JSONArray arrayVoeux = (JSONArray) candidat.get("voeux");
+            Atelier[] voeux = new Atelier[arrayVoeux.length()];
+            final int[] j = {0};
+            arrayVoeux.forEach(v -> {
+                JSONObject voeu1 = (JSONObject) v;
+                voeux[j[0]] = ateliers[(int) voeu1.get("ordre") - 1];
+                j[0]++;
+            });
+            candidats.add(new Candidat((String) candidat.get("nom"), voeux, 3));
         });
 
-        System.out.println("");
+        AlgoRecuitSimule algo = new AlgoRecuitSimule();
+        State s = algo.algo(candidats, List.of(ateliers));
+        System.out.println(s.toJson());
     }
 }
