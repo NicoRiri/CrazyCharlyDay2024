@@ -29,8 +29,7 @@ public class URLToJson {
         try {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             String jsonText = readAll(rd);
-            JSONObject json = new JSONObject(jsonText);
-            return json;
+            return new JSONObject(jsonText);
         } finally {
             is.close();
         }
@@ -115,6 +114,22 @@ public class URLToJson {
         JSONObject jsonVoeu = readJsonFromUrl(lienDuSite + "/voeux");
         JSONArray arrayVoeu = (JSONArray) jsonVoeu.get("data");
 
+        List<Candidat> candidats = new ArrayList<>();
+        arrayVoeu.forEach(voeu -> {
+            JSONObject candidat = (JSONObject) voeu;
+            JSONArray arrayVoeux = (JSONArray) candidat.get("voeux");
+            Atelier[] voeux = new Atelier[arrayVoeux.length()];
+            final int[] j = {0};
+            arrayVoeux.forEach(v -> {
+                JSONObject voeu1 = (JSONObject) v;
+                voeux[j[0]] = ateliers[(int) voeu1.get("ordre") - 1];
+                j[0]++;
+            });
+            candidats.add(new Candidat((String) candidat.get("nom"), voeux, 3));
+        });
 
+        AlgoRecuitSimule algo = new AlgoRecuitSimule();
+        State s = algo.algo(candidats, List.of(ateliers));
+        System.out.println(s.toJson());
     }
 }
