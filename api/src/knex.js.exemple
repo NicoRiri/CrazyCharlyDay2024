@@ -1,0 +1,12 @@
+export default {
+    development: {
+        client : "",
+        connection: {
+            host: "",
+            port: ,
+            user: "",
+            password: "",
+            database: ""
+        }
+    },
+}
