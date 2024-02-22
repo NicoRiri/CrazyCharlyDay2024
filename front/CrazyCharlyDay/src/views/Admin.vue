@@ -1,6 +1,4 @@
 <script>
-import fs from 'fs';
-import { exec } from 'child_process';
 export default {
   data() {
     return {}
@@ -13,34 +11,8 @@ export default {
       this.$router.push({name: "ViewAtelier"});
     },
     executeJar() {
-      // Read the JSON file
-      fs.readFile('config.json', 'utf8', (err, data) => {
-        if (err) {
-          console.error('Error reading JSON file:', err);
-          return;
-        }
-
-        try {
-          const config = JSON.parse(data);
-
-          // Check if the JAR file path is provided in the JSON
-          if (config.jarFilePath) {
-            // Execute the JAR file
-            exec(`java -jar ${config.jarFilePath}`, (error, stdout, stderr) => {
-              if (error) {
-                console.error('Error executing JAR file:', error);
-                return;
-              }
-              console.log(stdout);
-            });
-          } else {
-            console.error('JAR file path is not provided in the JSON');
-          }
-        } catch (parseError) {
-          console.error('Error parsing JSON:', parseError);
-        }
-      });
-    }
+      console.log("jar");
+  }
   }
 }
 </script>
