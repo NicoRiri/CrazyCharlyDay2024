@@ -21,7 +21,7 @@ export default {
   document.getElementById("mySidebar").style.width = "500px";
 },
     closeNav() {
-  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("mySidebar").style.width = "10px";
 }
   }
 }
@@ -29,12 +29,11 @@ export default {
 
 <template>
   <header>
-    <button class="openbtn" @click="openNav">☰ Open Sidebar</button>
     <RouterLink to="/" class="home button">Home</RouterLink>
     <img alt="Vue logo" class="logo button" src="@/assets/logo.svg" width="125" height="125" />
     <RouterLink to="/articles" class="article">Article</RouterLink>
   </header>
-  <div id="mySidebar" class="sidebar">
+  <div id="mySidebar" class="sidebar" @mouseenter="openNav" @mouseleave="closeNav">
     <div class="buttonGroup">
     <a href="javascript:void(0)" class="closebtn" @click="closeNav">×</a>
     <input v-model="nom" placeholder="Entrer votre nom" required>
@@ -65,7 +64,7 @@ header {
 
 .sidebar {
   height: 100%;
-  width: 0;
+  width: 10px;
   position: fixed;
   z-index: 1;
   top: 0;
