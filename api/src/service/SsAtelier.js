@@ -13,6 +13,16 @@ class SsAtelier {
         }
     }
 
+    static async getAtelierNbPage(req, res, next) {
+        try {
+            const res = await SsAtelier.db('atelier').count('id as nb').first();
+            return Math.ceil(res.nb / 5);
+        } catch (err) {
+            console.error(err);
+            throw new Error("Erreur lors du calcul du nombre de page pour les ateliers");
+        }
+    }
+
     static async getAtelierById(req, res, next) {
         try {
             return await SsAtelier.db('atelier').where('id', req.params.id).select('*').first();
@@ -28,6 +38,15 @@ class SsAtelier {
         } catch (err) {
             console.error(err);
             throw new Error("can't find atelier");
+        }
+    }
+
+    static async postAtelier(req, res, next) {
+        try {
+            return await SsAtelier.db('atelier').insert({titre: req.body.titre, description: req.body.description, theme: req.body.theme, placeDispo: req.body.placeDispo, image: req.body.image, debut: req.body.debut, fin: req.body.fin});
+        } catch (err) {
+            console.error(err);
+            throw new Error("Erreur lors du post de l'atelier");
         }
     }
 }
