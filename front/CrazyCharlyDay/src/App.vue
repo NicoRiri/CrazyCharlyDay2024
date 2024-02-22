@@ -2,6 +2,7 @@
 import { RouterLink, RouterView } from 'vue-router'
 import SubAffiche from "@/components/subAffiche.vue";
 import draggable from 'vuedraggable';
+import axios from "axios";
 
 export default {
   components: {
@@ -16,6 +17,11 @@ export default {
       prenom: "",
       email: "",
       donnee: [{ id: 1, titre: "Cuisine Français", date: "2022-03-18" }, { id: 2, titre: "Cuisine Anglaise", date: "2023-03-17" }],
+    }
+  },
+  computed: {
+    adminRoute(){
+      return this.$route.name === "Admin" || this.$route.name === "CreateAtelier" || this.$route.name === "ViewAtelier"
     }
   },
   methods: {
@@ -35,7 +41,32 @@ export default {
       if(this.nom.length>2&&this.prenom.length>2&&this.email.length>2){
         if(this.email.includes("@")&&this.email.includes(".")){
           if(this.donnee.length>0){
-            console.log(this.donnee);
+            let format={
+              "prenom":this.prenom,
+              "nom":this.nom,
+              "voeux": [],
+            }
+            let index=1;
+            this.donnee.forEach((element)=>{
+              format.voeux.push({"id":element.id,"ordre":index});
+              index++;
+            });
+            console.log(format);
+            axios.post("http://docketu.iutnc.univ-lorraine.fr:35652/voeux",format).then(
+              (response)=>{
+                alert(response.data.message);
+                sessionStorage.removeItem('panier');
+                sessionStorage.removeItem('nom');
+                sessionStorage.removeItem('prenom');
+                sessionStorage.removeItem('email');
+                this.donnee=[];
+                this.nom="";
+                this.prenom="";
+                this.email="";
+              }
+            ).catch((error)=>{
+              console.log(error);
+            });
           }else{
             alert("Veuillez selectionner au moins un atelier");
           }
@@ -69,36 +100,41 @@ export default {
 </script>
 
 <template>
-  <div id="mySidebar" class="sidebar">
-    <div class="buttonGroup">
-      <h2>Nom</h2>
-      <input v-model="nom" placeholder="Entrer votre nom" required minlength="2" @input="actualiser"/>
-      <h2>Prénom</h2>
-      <input v-model="prenom" placeholder="Entrer votre prenom" required minlength="2" @input="actualiser"/>
-      <h2>Email</h2>
-      <input v-model="email" type="email" placeholder="Entrer votre email" required  @input="actualiser"/>
-    </div>
-    <h2>Ateliers</h2>
-    <div class="panier">
-      <draggable v-model="donnee" :options="{ group: 'items' }" item-key="id" @end="onDragEnd">
-        <template #item="{ element: item, index }">
-          <div :key="item.id">
-            <SubAffiche :nom="item" :index="index" />
-          </div>
-        </template>
-      </draggable>
-    </div>
-    <button @click="valider()" class="valider">Valider</button>
-  </div>
-  <section class="page">
-    <nav>
-      <RouterLink to="/" class="home button">Home</RouterLink>
-      <img alt="Vue logo" class="logo button" src="@/assets/logo.webp" width="125" height="125" />
-      <RouterLink to="/articles/1" class="article">Article</RouterLink>
-    </nav>
-
+  <div v-if="adminRoute">
     <RouterView :key="$route.path" />
-  </section>
+  </div>
+  <div v-else>
+    <div id="mySidebar" class="sidebar">
+      <div class="buttonGroup">
+        <h2>Nom</h2>
+        <input v-model="nom" placeholder="Entrer votre nom" required minlength="2" @input="actualiser"/>
+        <h2>Prénom</h2>
+        <input v-model="prenom" placeholder="Entrer votre prenom" required minlength="2" @input="actualiser"/>
+        <h2>Email</h2>
+        <input v-model="email" type="email" placeholder="Entrer votre email" required  @input="actualiser"/>
+      </div>
+      <h2>Ateliers</h2>
+      <div class="panier">
+        <draggable v-model="donnee" :options="{ group: 'items' }" item-key="id" @end="onDragEnd">
+          <template #item="{ element: item, index }">
+            <div :key="item.id">
+              <SubAffiche :nom="item" :index="index" />
+            </div>
+          </template>
+        </draggable>
+      </div>
+      <button @click="valider()" class="valider"><h2>Valider</h2></button>
+    </div>
+    <section class="page">
+      <nav>
+        <RouterLink to="/" class="home button">Home</RouterLink>
+        <img alt="Vue logo" class="logo button" src="@/assets/logo.webp" width="125" height="125" />
+        <RouterLink to="/articles/1" class="article">Article</RouterLink>
+      </nav>
+
+      <RouterView :key="$route.path" />
+    </section>
+  </div>
 </template>
 
 <style scoped>

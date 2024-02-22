@@ -15,7 +15,8 @@ class SsAtelier {
 
     static async getAtelierNbPage(req, res, next) {
         try {
-            const res = await SsAtelier.db('atelier').count('id as nb').first();
+            let date = new Date().toLocaleString();
+            const res = await SsAtelier.db('atelier').where("debut", ">=", date).count('id as nb').first();
             return Math.ceil(res.nb / 5);
         } catch (err) {
             console.error(err);
@@ -34,7 +35,8 @@ class SsAtelier {
 
     static async getAtelierByPage(req, res, next) {
         try {
-            return await SsAtelier.db('atelier').select('*').orderBy('id').limit(5).offset((req.params.page - 1) * 5)
+            let date = new Date();
+            return await SsAtelier.db('atelier').select('*').where("debut", ">=", date).orderBy('id').limit(5).offset((req.params.page - 1) * 5)
         } catch (err) {
             console.error(err);
             throw new Error("can't find atelier");
