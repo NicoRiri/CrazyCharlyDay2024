@@ -1,43 +1,43 @@
 <script>
-export default{
+export default {
   props: {
     donnee: {
       type: Object,
       required: true
     }
   },
-  data(){
+  data() {
     return {
       duree: 0,
       date: ""
     }
   },
   methods: {
-  reroute(id) {
-    this.$router.push({ path: '/atelier/'+id })
-  },
-    ajout(){
-      let pack= {id:this.donnee.id,titre:this.donnee.titre,date:this.date};
-      let panier=sessionStorage.getItem('panier');
-      if(panier==null){
-        panier=[];
-      }else{
-        panier=JSON.parse(panier);
+    reroute(id) {
+      this.$router.push({path: '/atelier/' + id})
+    },
+    ajout() {
+      let pack = {id: this.donnee.id, titre: this.donnee.titre, date: this.date};
+      let panier = sessionStorage.getItem('panier');
+      if (panier == null) {
+        panier = [];
+      } else {
+        panier = JSON.parse(panier);
       }
       panier.push(pack);
-      sessionStorage.setItem('panier',JSON.stringify(panier));
+      sessionStorage.setItem('panier', JSON.stringify(panier));
       this.$root.actualiser();
     }
-},
+  },
   mounted() {
-    let debut=this.donnee.debut.split("T")[0].split(" ")[0];
-    let debutdate=new Date(this.donnee.debut);
-    let findate=new Date(this.donnee.fin);
+    let debut = this.donnee.debut.split("T")[0].split(" ")[0];
+    let debutdate = new Date(this.donnee.debut);
+    let findate = new Date(this.donnee.fin);
     const differenceEnMillisecondes = Math.abs(findate - debutdate);
     const jours = Math.floor(differenceEnMillisecondes / (1000 * 60 * 60 * 24));
     const heuresRestantes = Math.floor((differenceEnMillisecondes % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutesRestantes = Math.floor((differenceEnMillisecondes % (1000 * 60 * 60)) / (1000 * 60));
-    this.duree=jours+" jours "+heuresRestantes+" heures "+minutesRestantes+" minutes";
+    this.duree = jours + " jours " + heuresRestantes + " heures " + minutesRestantes + " minutes";
     this.date = debut;
   }
 }
@@ -46,14 +46,14 @@ export default{
 <template>
   <div class="subMenu">
     <div class="subAffiche">
-  <h1>{{donnee.titre}}</h1>
-  <p>{{donnee.description}}</p>
-      <p>{{duree}}</p>
-      <p>{{date}}</p>
-    <button @click="reroute(donnee.id)">Voir plus</button>
+      <h1>{{ donnee.titre }}</h1>
+      <p>{{ donnee.description }}</p>
+      <p>{{ duree }}</p>
+      <p>{{ date }}</p>
+      <button @click="reroute(donnee.id)">Voir plus</button>
       <button @click="ajout()">Participer</button>
     </div>
-  <img alt="Cuisine" :src="donnee.image" width="500px" height="250px" />
+    <img alt="Cuisine" :src="donnee.image" width="500px" height="250px"/>
   </div>
 </template>
 
@@ -64,16 +64,16 @@ h1 {
   margin-bottom: 20px;
 }
 
-.subMenu{
-  display:flex;
+.subMenu {
+  display: flex;
 }
 
-.subAffiche{
-  width:80%;
+.subAffiche {
+  width: 80%;
   margin-left: 20px;
 }
 
-img{
+img {
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 20px;
