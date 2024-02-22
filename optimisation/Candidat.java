@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Candidat {
@@ -14,6 +15,7 @@ public class Candidat {
     this.nom = nom;
     this.voeux = voeux;
     this.nbVoeux = nbVoeux;
+    this.voeuxAccordes = new ArrayList<>();
   }
 
   public Atelier[] getVoeux() {
@@ -30,5 +32,15 @@ public class Candidat {
 
   public List<String> getVoeuAccorde() {
     return voeuxAccordes;
+  }
+
+  @Override
+  public String toString() {
+    return "Candidat{" +
+            "nom='" + nom + '\'' +
+            ", nbVoeux=" + nbVoeux +
+            ", voeux=" + Arrays.toString(voeux) +
+            ", voeuxAccordes=" + voeuxAccordes +
+            '}';
   }
 }
