@@ -1,7 +1,7 @@
 import SsAtelier from "../service/SsAtelier.js";
 import SsUtilisateur from "../service/SsUtilisateur.js";
 
-export async function getAtelierByIdAction(req,res,next){
+export async function GetAtelierByIdAction(req,res,next){
     try {
         const atelier = await SsAtelier.getAtelierById(req, res, next)
         const user = await SsUtilisateur.getUserFromAtelier(req, res, next)
