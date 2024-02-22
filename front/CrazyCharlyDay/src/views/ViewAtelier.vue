@@ -1,4 +1,5 @@
 <script>
+import axios from "axios";
 export default {
   data() {
     return {}
@@ -9,6 +10,17 @@ export default {
     },
     toViewAtelier() {
       this.$router.push({name: "ViewAtelier"});
+    },
+    requete(){
+      let lien = "";
+      axios
+      .get()
+      .then((response) => {
+
+      })
+      .catch((error) => {
+        console.log(error);
+      })
     }
   }
 }
